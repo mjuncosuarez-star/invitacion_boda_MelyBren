@@ -44,12 +44,12 @@ body {
     text-align: center;
 }
 
-/* ===== IMAGEN CORREGIDA (NO CORTA ARRIBA) ===== */
+/* IMAGEN SUAVE */
 .fadeImage {
     width: 100%;
     height: 100vh;
     object-fit: cover;
-    object-position: top center; /* 👈 evita que se corte la franja superior */
+    object-position: top center;
     animation: cinematicZoom 30s linear infinite alternate;
 }
 
@@ -78,19 +78,16 @@ body {
     box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
 }
 
-/* ===== PÉTALOS BLANCOS REALISTAS ===== */
-.petal {
+/* 🤍 CORAZONES BLANCOS */
+.heart {
     position: fixed;
     top: -30px;
-    width: 20px;
-    height: 25px;
-    background: radial-gradient(ellipse at center, #ffffff 0%, #f2f2f2 60%, #e6e6e6 100%);
-    border-radius: 60% 40% 60% 40%;
-    opacity: 0.9;
     pointer-events: none;
+    font-size: 20px;
+    color: white;
+    opacity: 0.9;
     z-index: 2500;
     animation: fall linear forwards;
-    filter: blur(0.3px);
 }
 
 @keyframes fall {
@@ -144,8 +141,15 @@ body {
 
 /* ENTRAR INVITACIÓN */
 function enterInvitation() {
+
+    // 🎵 Música
     var audio = document.getElementById("musica");
     audio.play();
+
+    // 📳 Vibración (funciona en Android)
+    if (navigator.vibrate) {
+        navigator.vibrate([200, 100, 200]);
+    }
 
     document.getElementById("welcomeScreen").style.opacity = "0";
 
@@ -173,28 +177,30 @@ setInterval(function() {
 
 }, 1000);
 
-/* ===== PÉTALOS REALISTAS ===== */
-function createPetal() {
+/* 🤍 CORAZONES */
+function createHeart() {
 
-    var petal = document.createElement("div");
-    petal.classList.add("petal");
+    var heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "🤍";
 
-    petal.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.fontSize = (Math.random() * 15 + 15) + "px";
+    heart.style.animationDuration = (Math.random() * 6 + 8) + "s";
 
-    var size = Math.random() * 12 + 15;
-    petal.style.width = size + "px";
-    petal.style.height = size * 1.2 + "px";
-
-    petal.style.animationDuration = (Math.random() * 6 + 8) + "s";
-
-    document.body.appendChild(petal);
+    document.body.appendChild(heart);
 
     setTimeout(function() {
-        petal.remove();
+        heart.remove();
     }, 14000);
 }
 
-setInterval(createPetal, 500);
+setInterval(createHeart, 500);
+
+</script>
+
+</body>
+</html>
 
 </script>
 
