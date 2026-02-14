@@ -24,7 +24,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    z-index: 2000;
+    z-index: 3000;
     transition: opacity 1s ease;
 }
 
@@ -46,25 +46,22 @@ body {
 #mainContent {
     display: none;
     text-align: center;
-    animation: fadeIn 2s ease forwards;
 }
 
-@keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
-}
-
-/* Animación imagen */
+/* Imagen con zoom suave real */
 .fadeImage {
-    animation: zoomFade 2.5s ease;
+    width: 100%;
+    transform: scale(1.08);
+    opacity: 0;
+    animation: smoothZoom 3s ease-out forwards;
 }
 
-@keyframes zoomFade {
-    from {
-        transform: scale(1.1);
+@keyframes smoothZoom {
+    0% {
+        transform: scale(1.08);
         opacity: 0;
     }
-    to {
+    100% {
         transform: scale(1);
         opacity: 1;
     }
@@ -88,19 +85,21 @@ body {
     color: white;
     background: #b48a78;
     box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+    position: relative;
+    z-index: 2000;
 }
 
 .btn:hover {
     background: #9f7565;
 }
 
-/* PÉTALOS */
+/* 🌸 PÉTALOS VISIBLES */
 .petal {
     position: fixed;
-    top: -10px;
+    top: -20px;
     pointer-events: none;
-    animation: fall linear infinite;
-    z-index: 1000;
+    animation: fall linear forwards;
+    z-index: 2500; /* MÁS ALTO para que se vean */
 }
 
 @keyframes fall {
@@ -113,6 +112,7 @@ body {
         opacity: 0;
     }
 }
+
 </style>
 </head>
 
@@ -129,14 +129,11 @@ body {
 
     <div>
         <img class="fadeImage"
-             src="boda_civil_miguel_y_brenda-web-resources/image/1.png"
-             width="100%" />
+             src="boda_civil_miguel_y_brenda-web-resources/image/1.png" />
     </div>
 
-    <!-- CONTADOR -->
     <div id="countdown"></div>
 
-    <!-- BOTONES -->
     <div>
         <a class="btn" href="https://goo.gl/maps/bMzxzeRwFK9SjVdSA" target="_blank">
             📍 Ver ubicación
@@ -149,7 +146,6 @@ body {
 
 </div>
 
-<!-- AUDIO -->
 <audio id="musica" loop>
     <source src="boda_civil_miguel_y_brenda-web-resources/audio/WhatsApp_Audio_2026-02-05_at_1.44.05_PM.mpeg" type="audio/mpeg" />
 </audio>
@@ -169,7 +165,7 @@ function enterInvitation() {
     }, 1000);
 }
 
-/* CONTADOR REGRESIVO */
+/* CONTADOR */
 var countDownDate = new Date("April 24, 2026 00:00:00").getTime();
 
 var x = setInterval(function() {
@@ -193,7 +189,7 @@ var x = setInterval(function() {
 
 }, 1000);
 
-/* EFECTO PÉTALOS */
+/* 🌸 PÉTALOS MEJORADOS */
 function createPetal() {
     var petal = document.createElement("div");
     petal.classList.add("petal");
@@ -201,8 +197,8 @@ function createPetal() {
     petal.innerHTML = "🌸";
 
     petal.style.left = Math.random() * 100 + "vw";
-    petal.style.fontSize = (Math.random() * 10 + 15) + "px";
-    petal.style.animationDuration = (Math.random() * 5 + 5) + "s";
+    petal.style.fontSize = (Math.random() * 10 + 20) + "px";
+    petal.style.animationDuration = (Math.random() * 4 + 6) + "s";
 
     document.body.appendChild(petal);
 
@@ -211,15 +207,9 @@ function createPetal() {
     }, 10000);
 }
 
-setInterval(createPetal, 500);
+setInterval(createPetal, 400);
 
 </script>
 
 </body>
 </html>
-
-
-</body>
-</html>
-
-
