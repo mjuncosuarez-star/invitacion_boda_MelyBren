@@ -217,3 +217,175 @@ setInterval(function() {
 
 </body>
 </html>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Miguel & Brenda</title>
+
+<link href="boda_civil_miguel_y_brenda-web-resources/css/idGeneratedStyles.css" rel="stylesheet" type="text/css" />
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+    background: #f5f1ed;
+}
+
+/* PANTALLA BIENVENIDA */
+#welcomeScreen {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #f5f1ed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 3000;
+    transition: opacity 1s ease;
+}
+
+#enterBtn {
+    padding: 15px 25px;
+    border: none;
+    border-radius: 12px;
+    background: #b48a78;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
+}
+
+#mainContent {
+    display: none;
+    text-align: center;
+}
+
+/* IMAGEN SUAVE */
+.fadeImage {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    object-position: top center;
+    animation: cinematicZoom 30s linear infinite alternate;
+}
+
+@keyframes cinematicZoom {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.05); }
+}
+
+/* CONTADOR */
+#countdown {
+    font-size: 20px;
+    margin: 30px 0;
+    color: #b48a78;
+    font-weight: bold;
+}
+
+/* BOTONES */
+.btn {
+    display: inline-block;
+    margin: 10px;
+    padding: 12px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    background: #b48a78;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- PANTALLA ENTRADA -->
+<div id="welcomeScreen">
+    <h2 style="color:#b48a78;">Miguel & Brenda</h2>
+    <button id="enterBtn" onclick="enterInvitation()">💌 Entrar a la invitación</button>
+</div>
+
+<!-- CONTENIDO -->
+<div id="mainContent">
+
+    <img class="fadeImage"
+         src="boda_civil_miguel_y_brenda-web-resources/image/1.png" />
+
+    <div id="countdown"></div>
+
+    <div>
+        <a class="btn" href="https://goo.gl/maps/bMzxzeRwFK9SjVdSA" target="_blank">
+            📍 Ver ubicación
+        </a>
+
+        <a class="btn" href="https://wa.me/51931083634" target="_blank">
+            💬 Confirmar asistencia
+        </a>
+    </div>
+
+</div>
+
+<audio id="musica" loop>
+    <source src="boda_civil_miguel_y_brenda-web-resources/audio/WhatsApp_Audio_2026-02-05_at_1.44.05_PM.mpeg" type="audio/mpeg" />
+</audio>
+
+<script>
+
+/* ENTRAR INVITACIÓN */
+function enterInvitation() {
+
+    // 🎵 Música
+    var audio = document.getElementById("musica");
+    audio.play();
+
+    // 💓 Vibración tipo latido por 20 segundos (Android)
+    if (navigator.vibrate) {
+
+        let duracionTotal = 20000;
+        let inicio = Date.now();
+
+        let intervalo = setInterval(function() {
+
+            navigator.vibrate([150, 120, 150, 600]);
+
+            if (Date.now() - inicio > duracionTotal) {
+                clearInterval(intervalo);
+                navigator.vibrate(0);
+            }
+
+        }, 1000);
+    }
+
+    document.getElementById("welcomeScreen").style.opacity = "0";
+
+    setTimeout(function() {
+        document.getElementById("welcomeScreen").style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
+    }, 1000);
+}
+
+/* CONTADOR */
+var countDownDate = new Date("April 24, 2026 00:00:00").getTime();
+
+setInterval(function() {
+    var now = new Date().getTime();
+    var distance = countDownDate - now;
+
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("countdown").innerHTML =
+        "Faltan " + days + " días " + hours + "h "
+        + minutes + "m " + seconds + "s";
+
+}, 1000);
+
+</script>
+
+</body>
+</html>
