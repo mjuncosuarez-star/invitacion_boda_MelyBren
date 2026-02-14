@@ -1,28 +1,59 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta charset="utf-8" />
-		<title>boda_civil_miguel_y_brenda</title>
-		<link href="boda_civil_miguel_y_brenda-web-resources/css/idGeneratedStyles.css" rel="stylesheet" type="text/css" />
-		
-		<style>
-			audio {
-				display: none;
-			}
-		</style>
+<head>
+    <meta charset="utf-8" />
+    <title>boda_civil_miguel_y_brenda</title>
+    
+    <link href="boda_civil_miguel_y_brenda-web-resources/css/idGeneratedStyles.css" rel="stylesheet" type="text/css" />
 
-	</head>
-	<body id="boda_civil_miguel_y_brenda">
+    <style>
+        #playBtn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 999;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 10px;
+            background: #b48a78;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+        }
+    </style>
 
-		<div class="_idGenObjectLayout-1">
-			<div id="_idContainer000">
-				<img class="_idGenObjectAttribute-1" src="boda_civil_miguel_y_brenda-web-resources/image/1.png" alt="" />
-			</div>
-		</div>
+</head>
 
-		<audio autoplay loop>
-			<source src="boda_civil_miguel_y_brenda-web-resources/audio/WhatsApp_Audio_2026-02-05_at_1.44.05_PM.mpeg" type="audio/mpeg" />
-		</audio>
+<body id="boda_civil_miguel_y_brenda">
 
-	</body>
+    <!-- BOTÓN PARA ACTIVAR MÚSICA -->
+    <button id="playBtn" onclick="playMusic()">
+        🎵 Reproducir música
+    </button>
+
+    <!-- IMAGEN PRINCIPAL -->
+    <div class="_idGenObjectLayout-1">
+        <div id="_idContainer000">
+            <img class="_idGenObjectAttribute-1" 
+                 src="boda_civil_miguel_y_brenda-web-resources/image/1.png" 
+                 alt="" />
+        </div>
+    </div>
+
+    <!-- AUDIO -->
+    <audio id="musica" loop>
+        <source src="boda_civil_miguel_y_brenda-web-resources/audio/WhatsApp_Audio_2026-02-05_at_1.44.05_PM.mpeg" type="audio/mpeg" />
+    </audio>
+
+    <!-- SCRIPT -->
+    <script>
+        function playMusic() {
+            var audio = document.getElementById("musica");
+            audio.play();
+            document.getElementById("playBtn").style.display = "none";
+        }
+    </script>
+
+</body>
 </html>
