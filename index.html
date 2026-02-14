@@ -44,11 +44,12 @@ body {
     text-align: center;
 }
 
-/* ===== IMAGEN ZOOM SUAVE CONTINUO ===== */
+/* ===== IMAGEN CORREGIDA (NO CORTA ARRIBA) ===== */
 .fadeImage {
     width: 100%;
     height: 100vh;
     object-fit: cover;
+    object-position: top center; /* 👈 evita que se corte la franja superior */
     animation: cinematicZoom 30s linear infinite alternate;
 }
 
@@ -92,7 +93,6 @@ body {
     filter: blur(0.3px);
 }
 
-/* caída natural con movimiento lateral */
 @keyframes fall {
     0% {
         transform: translateY(0) translateX(0) rotate(0deg);
@@ -201,8 +201,3 @@ setInterval(createPetal, 500);
 </body>
 </html>
 
-
-</script>
-
-</body>
-</html>
