@@ -94,6 +94,25 @@ body {
     background: #9f7565;
 }
 
+/* PÉTALOS */
+.petal {
+    position: fixed;
+    top: -10px;
+    pointer-events: none;
+    animation: fall linear infinite;
+    z-index: 1000;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
 </style>
 </head>
 
@@ -174,7 +193,31 @@ var x = setInterval(function() {
 
 }, 1000);
 
+/* EFECTO PÉTALOS */
+function createPetal() {
+    var petal = document.createElement("div");
+    petal.classList.add("petal");
+
+    petal.innerHTML = "🌸";
+
+    petal.style.left = Math.random() * 100 + "vw";
+    petal.style.fontSize = (Math.random() * 10 + 15) + "px";
+    petal.style.animationDuration = (Math.random() * 5 + 5) + "s";
+
+    document.body.appendChild(petal);
+
+    setTimeout(function() {
+        petal.remove();
+    }, 10000);
+}
+
+setInterval(createPetal, 500);
+
 </script>
+
+</body>
+</html>
+
 
 </body>
 </html>
