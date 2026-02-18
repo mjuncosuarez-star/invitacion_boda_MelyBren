@@ -29,20 +29,23 @@ body {
     flex-direction: column;
     z-index: 3000;
     transition: opacity 1s ease;
+    padding: 20px;
+    text-align: center;
 }
 
 #welcomeScreen h1 {
     font-size: 46px;
-    margin-bottom: 40px;
+    margin-bottom: 35px;
 }
 
+/* BOTÓN AJUSTADO */
 #enterBtn {
-    padding: 22px 50px;
+    padding: 18px 38px; /* más pequeño */
     border: none;
     border-radius: 30px;
     background: linear-gradient(45deg, #b48a78, #a07160);
     color: white;
-    font-size: 22px;
+    font-size: 20px; /* un poco menor */
     cursor: pointer;
     box-shadow: 0 10px 30px rgba(0,0,0,0.25);
     transition: all 0.3s ease;
@@ -72,7 +75,7 @@ body {
 
 /* SECCIÓN FECHA */
 .date-section {
-    margin: 60px 20px 30px;
+    margin: 60px 20px 20px;
     font-size: 28px;
     letter-spacing: 2px;
 }
@@ -84,7 +87,7 @@ body {
     font-weight: bold;
 }
 
-/* BOTONES ELEGANTES */
+/* BOTONES */
 .buttons {
     margin-bottom: 80px;
 }
@@ -123,7 +126,7 @@ body {
          src="boda_civil_miguel_y_brenda-web-resources/image/1.png" />
 
     <div class="date-section">
-        24 • Abril • 2026
+        24 • Abril • 2026 — 9:30 AM
     </div>
 
     <div id="countdown"></div>
@@ -176,10 +179,11 @@ function enterInvitation() {
     }, 1000);
 }
 
-/* CONTADOR */
-var countDownDate = new Date("April 24, 2026 00:00:00").getTime();
+/* CONTADOR CON HORA 9:30 AM */
+var countDownDate = new Date("April 24, 2026 09:30:00").getTime();
 
 setInterval(function() {
+
     var now = new Date().getTime();
     var distance = countDownDate - now;
 
@@ -198,3 +202,4 @@ setInterval(function() {
 
 </body>
 </html>
+
