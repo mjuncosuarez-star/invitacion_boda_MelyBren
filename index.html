@@ -17,7 +17,8 @@ body {
     scroll-behavior: smooth;
 }
 
-/* PANTALLA BIENVENIDA */
+/* ================= PANTALLA BIENVENIDA ================= */
+
 #welcomeScreen {
     position: fixed;
     width: 100%;
@@ -33,33 +34,39 @@ body {
     padding: 20px;
 }
 
-/* TÍTULO CENTRADO PERFECTO */
+/* TÍTULO PERFECTAMENTE CENTRADO */
 #welcomeScreen h1 {
-    font-size: 40px; /* un poco más pequeño */
-    margin-bottom: 35px;
-    width: 100%;
-    max-width: 400px;
+    font-size: 36px;
+    margin-bottom: 30px;
     text-align: center;
+    width: 90%;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+    letter-spacing: 1px;
 }
 
-/* BOTÓN */
+/* BOTÓN AJUSTADO */
 #enterBtn {
-    padding: 18px 38px;
+    padding: 16px 32px;
     border: none;
     border-radius: 30px;
     background: linear-gradient(45deg, #b48a78, #a07160);
     color: white;
-    font-size: 20px;
+    font-size: 18px;
     cursor: pointer;
     box-shadow: 0 10px 30px rgba(0,0,0,0.25);
     transition: all 0.3s ease;
+    width: 85%;
+    max-width: 300px;
 }
 
 #enterBtn:hover {
     transform: translateY(-3px);
 }
 
-/* CONTENIDO */
+/* ================= CONTENIDO ================= */
+
 #mainContent {
     display: none;
     text-align: center;
@@ -77,16 +84,16 @@ body {
     display: block;
 }
 
-/* SECCIÓN FECHA */
+/* FECHA */
 .date-section {
     margin: 60px 20px 20px;
-    font-size: 28px;
+    font-size: 26px;
     letter-spacing: 2px;
 }
 
 /* CONTADOR */
 #countdown {
-    font-size: 24px;
+    font-size: 22px;
     margin: 20px 0 50px;
     font-weight: bold;
 }
@@ -99,14 +106,14 @@ body {
 .btn {
     display: inline-block;
     margin: 15px;
-    padding: 15px 35px;
+    padding: 14px 32px;
     border-radius: 40px;
     text-decoration: none;
     color: white;
     background: linear-gradient(45deg, #b48a78, #a07160);
     box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     transition: all 0.3s ease;
-    font-size: 18px;
+    font-size: 17px;
 }
 
 .btn:hover {
@@ -153,11 +160,13 @@ body {
 
 <script>
 
+/* FUNCIÓN ENTRAR */
 function enterInvitation() {
 
     var audio = document.getElementById("musica");
     audio.play();
 
+    /* VIBRACIÓN 20 SEGUNDOS (ANDROID) */
     if ("vibrate" in navigator) {
         let endTime = Date.now() + 20000;
 
@@ -189,6 +198,12 @@ setInterval(function() {
     var now = new Date().getTime();
     var distance = countDownDate - now;
 
+    if (distance < 0) {
+        document.getElementById("countdown").innerHTML =
+            "💍 ¡Es hoy nuestro gran día!";
+        return;
+    }
+
     var days = Math.floor(distance / (1000 * 60 * 60 * 24));
     var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -204,4 +219,3 @@ setInterval(function() {
 
 </body>
 </html>
-
