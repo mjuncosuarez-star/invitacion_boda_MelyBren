@@ -14,7 +14,6 @@ body {
     font-family: 'Georgia', serif;
     background: #f5f1ed;
     color: #6d4c41;
-    scroll-behavior: smooth;
 }
 
 /* ================= PANTALLA BIENVENIDA ================= */
@@ -22,43 +21,43 @@ body {
 #welcomeScreen {
     position: fixed;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background: #f5f1ed;
+
+    /* CENTRADO PERFECTO */
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     flex-direction: column;
+
+    padding: 20px;
     z-index: 3000;
     transition: opacity 1s ease;
-    text-align: center;
-    padding: 20px;
 }
 
-/* TÍTULO PERFECTAMENTE CENTRADO */
+/* TÍTULO AJUSTADO */
 #welcomeScreen h1 {
-    font-size: 36px;
-    margin-bottom: 30px;
-    text-align: center;
-    width: 90%;
-    max-width: 320px;
-    margin-left: auto;
-    margin-right: auto;
+    font-size: 38px;   /* tamaño equilibrado */
+    margin-bottom: 28px;
     letter-spacing: 1px;
+    width: 100%;
+    max-width: 340px;
 }
 
 /* BOTÓN AJUSTADO */
 #enterBtn {
-    padding: 16px 32px;
+    padding: 15px 34px;
     border: none;
-    border-radius: 30px;
+    border-radius: 40px;
     background: linear-gradient(45deg, #b48a78, #a07160);
     color: white;
-    font-size: 18px;
+    font-size: 19px;
     cursor: pointer;
     box-shadow: 0 10px 30px rgba(0,0,0,0.25);
     transition: all 0.3s ease;
-    width: 85%;
-    max-width: 300px;
+    width: 80%;
+    max-width: 280px;
 }
 
 #enterBtn:hover {
@@ -78,27 +77,23 @@ body {
     to {opacity:1;}
 }
 
-/* IMAGEN */
 .fadeImage {
     width: 100%;
     display: block;
 }
 
-/* FECHA */
 .date-section {
     margin: 60px 20px 20px;
     font-size: 26px;
     letter-spacing: 2px;
 }
 
-/* CONTADOR */
 #countdown {
     font-size: 22px;
     margin: 20px 0 50px;
     font-weight: bold;
 }
 
-/* BOTONES */
 .buttons {
     margin-bottom: 80px;
 }
@@ -160,13 +155,11 @@ body {
 
 <script>
 
-/* FUNCIÓN ENTRAR */
 function enterInvitation() {
 
     var audio = document.getElementById("musica");
     audio.play();
 
-    /* VIBRACIÓN 20 SEGUNDOS (ANDROID) */
     if ("vibrate" in navigator) {
         let endTime = Date.now() + 20000;
 
@@ -190,7 +183,7 @@ function enterInvitation() {
     }, 1000);
 }
 
-/* CONTADOR EXACTO HORA PERÚ */
+/* CONTADOR EXACTO PERÚ */
 var countDownDate = new Date("2026-04-24T09:30:00-05:00").getTime();
 
 setInterval(function() {
@@ -219,3 +212,4 @@ setInterval(function() {
 
 </body>
 </html>
+
