@@ -29,23 +29,27 @@ body {
     flex-direction: column;
     z-index: 3000;
     transition: opacity 1s ease;
+    text-align: center;
     padding: 20px;
+}
+
+/* TÍTULO CENTRADO PERFECTO */
+#welcomeScreen h1 {
+    font-size: 40px; /* un poco más pequeño */
+    margin-bottom: 35px;
+    width: 100%;
+    max-width: 400px;
     text-align: center;
 }
 
-#welcomeScreen h1 {
-    font-size: 46px;
-    margin-bottom: 35px;
-}
-
-/* BOTÓN AJUSTADO */
+/* BOTÓN */
 #enterBtn {
-    padding: 18px 38px; /* más pequeño */
+    padding: 18px 38px;
     border: none;
     border-radius: 30px;
     background: linear-gradient(45deg, #b48a78, #a07160);
     color: white;
-    font-size: 20px; /* un poco menor */
+    font-size: 20px;
     cursor: pointer;
     box-shadow: 0 10px 30px rgba(0,0,0,0.25);
     transition: all 0.3s ease;
@@ -80,7 +84,7 @@ body {
     letter-spacing: 2px;
 }
 
-/* CONTADOR CENTRADO */
+/* CONTADOR */
 #countdown {
     font-size: 24px;
     margin: 20px 0 50px;
@@ -126,7 +130,7 @@ body {
          src="boda_civil_miguel_y_brenda-web-resources/image/1.png" />
 
     <div class="date-section">
-        24 • Abril • 2026 — 9:30 AM
+        Viernes 24 • Abril • 2026 — 9:30 AM
     </div>
 
     <div id="countdown"></div>
@@ -154,9 +158,7 @@ function enterInvitation() {
     var audio = document.getElementById("musica");
     audio.play();
 
-    /* VIBRACIÓN LATIDO 20 SEGUNDOS (ANDROID) */
     if ("vibrate" in navigator) {
-
         let endTime = Date.now() + 20000;
 
         function vibrateLoop() {
@@ -179,8 +181,8 @@ function enterInvitation() {
     }, 1000);
 }
 
-/* CONTADOR CON HORA 9:30 AM */
-var countDownDate = new Date("April 24, 2026 09:30:00").getTime();
+/* CONTADOR EXACTO HORA PERÚ */
+var countDownDate = new Date("2026-04-24T09:30:00-05:00").getTime();
 
 setInterval(function() {
 
