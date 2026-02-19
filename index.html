@@ -5,8 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Miguel & Brenda</title>
 
-<!-- FUENTE ELEGANTE -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
 
@@ -35,18 +34,13 @@ body {
     width: 100%;
     max-width: 360px;
     text-align: center;
-    margin: 0 auto;
 }
 
 .centerBox h1 {
     font-family: 'Playfair Display', serif;
     font-size: 42px;
-    font-weight: 600;
-    margin: 0 0 35px 0;
-    letter-spacing: 1px;
+    margin-bottom: 35px;
 }
-
-/* ===== BOTÓN INICIO ELEGANTE ===== */
 
 #enterBtn {
     padding: 16px 42px;
@@ -55,8 +49,6 @@ body {
     background: transparent;
     font-family: 'Playfair Display', serif;
     font-size: 20px;
-    font-weight: 500;
-    letter-spacing: 1px;
     color: #6d4c41;
     cursor: pointer;
     transition: all 0.4s ease;
@@ -87,6 +79,35 @@ body {
     display: block;
 }
 
+/* ================= MENSAJE ROMÁNTICO ================= */
+
+.romantic-section {
+    margin: 70px 25px 20px;
+}
+
+.romantic-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    line-height: 1.7;
+    color: #8d6e63;
+    min-height: 80px;
+}
+
+.gold-line {
+    width: 80px;
+    height: 2px;
+    margin: 25px auto 0;
+    background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from { opacity: 0.4; }
+    to { opacity: 1; }
+}
+
+/* ================= FECHA ================= */
+
 .date-section {
     margin: 60px 20px 20px;
     font-size: 26px;
@@ -99,7 +120,7 @@ body {
     font-weight: bold;
 }
 
-/* ================= BOTONES ELEGANTES ================= */
+/* ================= BOTONES ================= */
 
 .buttons {
     margin-bottom: 90px;
@@ -146,6 +167,12 @@ body {
     <img class="fadeImage"
          src="boda_civil_miguel_y_brenda-web-resources/image/1.png" />
 
+    <!-- MENSAJE ROMÁNTICO -->
+    <div class="romantic-section">
+        <div class="romantic-text" id="typeText"></div>
+        <div class="gold-line"></div>
+    </div>
+
     <div class="date-section">
         Viernes 24 • Abril • 2026 — 9:30 AM
     </div>
@@ -172,9 +199,23 @@ body {
 
 <script>
 
+/* MENSAJE QUE SE ESCRIBE */
+const message = "Con la bendición de Dios y el amor que nos une, hemos decidido caminar juntos para siempre…";
+let index = 0;
+
+function typeWriter() {
+    if (index < message.length) {
+        document.getElementById("typeText").innerHTML += message.charAt(index);
+        index++;
+        setTimeout(typeWriter, 40);
+    }
+}
+
 function enterInvitation() {
 
     document.getElementById("musica").play();
+
+    typeWriter(); // inicia escritura romántica
 
     var duration = 3000;
     var end = Date.now() + duration;
@@ -234,3 +275,4 @@ setInterval(function() {
 
 </body>
 </html>
+
