@@ -154,33 +154,39 @@ body {
 
 <script>
 
-/* 🔔 CAMPANITA REAL GENERADA */
+/* 🔔 CAMPANITA REAL TIPO IGLESIA */
 function playBell() {
-    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
-    const oscillator = audioCtx.createOscillator();
-    const gainNode = audioCtx.createGain();
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const now = ctx.currentTime;
 
-    oscillator.type = "sine";
-    oscillator.frequency.setValueAtTime(1200, audioCtx.currentTime);
-    oscillator.frequency.exponentialRampToValueAtTime(600, audioCtx.currentTime + 1);
+    function createTone(freq, gainValue, duration) {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
 
-    gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
-    gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 1);
+        osc.type = "sine";
+        osc.frequency.value = freq;
 
-    oscillator.connect(gainNode);
-    gainNode.connect(audioCtx.destination);
+        gain.gain.setValueAtTime(gainValue, now);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
 
-    oscillator.start();
-    oscillator.stop(audioCtx.currentTime + 1);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start(now);
+        osc.stop(now + duration);
+    }
+
+    // Frecuencias armónicas tipo campana
+    createTone(880, 0.4, 2);
+    createTone(1320, 0.2, 2);
+    createTone(1760, 0.1, 2);
 }
 
 function enterInvitation() {
 
-    var audio = document.getElementById("musica");
-    audio.play();
-
-    playBell(); // 🔔 ahora sí garantizado
+    document.getElementById("musica").play();
+    playBell();
 
     /* 🎉 CONFETI DORADO */
     var duration = 3 * 1000;
@@ -190,9 +196,9 @@ function enterInvitation() {
         confetti({
             particleCount: 5,
             spread: 80,
-            startVelocity: 30,
-            gravity: 0.8,
-            scalar: 1.2,
+            startVelocity: 25,
+            gravity: 0.7,
+            scalar: 1.1,
             origin: { x: Math.random(), y: 0 },
             colors: ['#D4AF37', '#C5A100', '#E6C200', '#F5DEB3']
         });
