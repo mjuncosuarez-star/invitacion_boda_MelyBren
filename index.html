@@ -51,8 +51,6 @@ body {
     cursor: pointer;
     box-shadow: 0 10px 30px rgba(0,0,0,0.25);
     transition: all 0.3s ease;
-    display: block;
-    margin: 0 auto;
 }
 
 #enterBtn:hover {
@@ -89,26 +87,49 @@ body {
     font-weight: bold;
 }
 
+/* ================= BOTONES ELEGANTES ================= */
+
 .buttons {
-    margin-bottom: 80px;
+    margin-bottom: 90px;
 }
 
 .btn {
     display: inline-block;
-    margin: 15px;
-    padding: 14px 32px;
-    border-radius: 40px;
+    margin: 18px;
+    padding: 16px 40px;
+    border-radius: 50px;
     text-decoration: none;
-    color: white;
-    background: linear-gradient(45deg, #b48a78, #a07160);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    transition: all 0.3s ease;
     font-size: 17px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: #6d4c41;
+    background: white;
+    border: 2px solid #b48a78;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+.btn::before {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(45deg, #b48a78, #a07160);
+    left: 0;
+    top: 0;
+    transition: 0.4s ease;
+    z-index: -1;
+}
+
+.btn:hover::before {
+    width: 100%;
 }
 
 .btn:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.25);
 }
 
 </style>
@@ -146,7 +167,7 @@ body {
 
 </div>
 
-<audio id="musica" loop>
+<audio id="musica" loop playsinline>
     <source src="boda_civil_miguel_y_brenda-web-resources/audio/WhatsApp_Audio_2026-02-05_at_1.44.05_PM.mpeg" type="audio/mpeg" />
 </audio>
 
@@ -154,10 +175,11 @@ body {
 
 <script>
 
-/* 🔔 CAMPANITA REAL TIPO IGLESIA */
+/* 🔔 CAMPANITA REAL */
 function playBell() {
 
     const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    ctx.resume();
     const now = ctx.currentTime;
 
     function createTone(freq, gainValue, duration) {
@@ -177,7 +199,6 @@ function playBell() {
         osc.stop(now + duration);
     }
 
-    // Frecuencias armónicas tipo campana
     createTone(880, 0.4, 2);
     createTone(1320, 0.2, 2);
     createTone(1760, 0.1, 2);
@@ -188,8 +209,7 @@ function enterInvitation() {
     document.getElementById("musica").play();
     playBell();
 
-    /* 🎉 CONFETI DORADO */
-    var duration = 3 * 1000;
+    var duration = 3000;
     var end = Date.now() + duration;
 
     (function frame() {
@@ -203,9 +223,7 @@ function enterInvitation() {
             colors: ['#D4AF37', '#C5A100', '#E6C200', '#F5DEB3']
         });
 
-        if (Date.now() < end) {
-            requestAnimationFrame(frame);
-        }
+        if (Date.now() < end) requestAnimationFrame(frame);
     }());
 
     if ("vibrate" in navigator) {
@@ -249,3 +267,4 @@ setInterval(function() {
 
 </body>
 </html>
+
