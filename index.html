@@ -30,14 +30,13 @@ body{
 
 .names{
     font-family:'Great Vibes',cursive;
-    font-size:55px;
+    font-size:50px;
     color:#b08d57;
-    margin-bottom:30px;
-    text-align:center;
+    margin-bottom:25px;
 }
 
 .open-btn{
-    padding:14px 40px;
+    padding:14px 38px;
     font-size:18px;
     font-family:'Playfair Display',serif;
     background:linear-gradient(45deg,#d4af37,#b08d57);
@@ -54,7 +53,7 @@ body{
     box-shadow:0 8px 20px rgba(0,0,0,0.3);
 }
 
-/* CONTENIDO PRINCIPAL */
+/* CONTENIDO */
 
 #mainContent{
     display:none;
@@ -71,7 +70,6 @@ body{
 
 .romantic-section{
     margin:60px 25px 40px;
-    position:relative;
 }
 
 .romantic-text{
@@ -103,16 +101,6 @@ body{
     to{opacity:1;}
 }
 
-.typewriter span{
-    border-right:2px solid #d4af37;
-    padding-right:5px;
-    animation:blink 1s infinite;
-}
-
-@keyframes blink{
-    50%{border-color:transparent;}
-}
-
 /* FECHA */
 
 .date-section{
@@ -129,8 +117,6 @@ body{
     margin-top:10px;
     font-size:18px;
 }
-
-/* CONTADOR */
 
 .countdown{
     display:flex;
@@ -181,22 +167,22 @@ body{
 </head>
 <body>
 
+<!-- BIENVENIDA -->
 <div id="welcome">
     <div class="names">Miguel & Brenda</div>
     <button class="open-btn" onclick="openInvitation()">Abrir la Invitación</button>
 </div>
 
+<!-- CONTENIDO PRINCIPAL -->
 <div id="mainContent">
 
-<img src="TU_IMAGEN_AQUI.jpg" class="main-image">
+<img src="foto.jpg" class="main-image">
 
-<!-- MENSAJE ROMÁNTICO -->
 <div class="romantic-section">
-    <div class="romantic-text typewriter" id="romanticText"></div>
+    <div class="romantic-text" id="romanticText"></div>
     <div class="gold-line"></div>
 </div>
 
-<!-- FECHA -->
 <div class="date-section">
     <div class="date-title">Nuestra Boda</div>
     <div class="date-info">Viernes 24 de Abril 2026 – 09:30 AM</div>
@@ -216,19 +202,31 @@ body{
 
 </div>
 
-<audio id="bellSound">
-<source src="https://assets.mixkit.co/sfx/preview/mixkit-wedding-bells-610.mp3" type="audio/mpeg">
+<!-- SONIDOS -->
+<audio id="bellSound" preload="auto">
+    <source src="campana.mp3" type="audio/mpeg">
 </audio>
 
+<audio id="music" loop preload="auto">
+    <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<!-- CONFETTI -->
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <script>
+
+/* ABRIR INVITACIÓN */
 
 function openInvitation(){
     document.getElementById("welcome").style.display="none";
     document.getElementById("mainContent").style.display="block";
 
     document.getElementById("bellSound").play();
+
+    const music = document.getElementById("music");
+    music.volume = 0.4;
+    music.play();
 
     confetti({
         particleCount:150,
@@ -240,10 +238,10 @@ function openInvitation(){
     startTypeWriter();
 }
 
-/* TYPEWRITER */
+/* MENSAJE TYPEWRITER */
 
 function startTypeWriter(){
-    const text="Con la bendición de Dios y el amor que nos une,\nhemos decidido caminar juntos para siempre…";
+    const text="Con la bendición de Dios y el amor que nos une, hemos decidido caminar juntos para siempre…";
     const element=document.getElementById("romanticText");
     let i=0;
     function typing(){
@@ -256,7 +254,7 @@ function startTypeWriter(){
     typing();
 }
 
-/* CONTADOR */
+/* CONTADOR CORRECTO */
 
 const weddingDate=new Date("April 24, 2026 09:30:00").getTime();
 
