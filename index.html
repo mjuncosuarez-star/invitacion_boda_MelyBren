@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Miguel & Brenda</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
 
 <style>
 body{
@@ -16,7 +16,7 @@ body{
     overflow-x:hidden;
 }
 
-/* Pantalla bienvenida */
+/* Bienvenida */
 #welcome{
     position:fixed;
     width:100%;
@@ -31,13 +31,12 @@ body{
 
 #welcome h1{
     font-family:'Playfair Display',serif;
-    font-size:38px;
+    font-size:36px;
     margin:0;
-    text-align:center;
 }
 
 #welcome p{
-    font-size:20px;
+    font-size:18px;
     margin:10px 0 25px;
 }
 
@@ -59,32 +58,24 @@ body{
 .hero{
     width:100%;
     height:100vh;
-    background:url("TU_IMAGEN_AQUI.jpg") center/cover no-repeat;
+    background:url("foto.jpg") center/cover no-repeat; /* CAMBIA foto.jpg */
     display:flex;
     justify-content:center;
     align-items:center;
     flex-direction:column;
-    animation:fadeIn 2s ease forwards;
-}
-
-@keyframes fadeIn{
-    from{opacity:0}
-    to{opacity:1}
 }
 
 .names{
     font-family:'Playfair Display',serif;
     font-size:42px;
     color:white;
-    text-shadow:0 3px 10px rgba(0,0,0,0.5);
-    margin:0;
+    text-shadow:0 3px 10px rgba(0,0,0,0.6);
 }
 
 /* Contador */
 .countdown{
     margin:40px 0;
     font-size:22px;
-    font-weight:500;
 }
 
 /* Botones */
@@ -111,8 +102,8 @@ body{
 /* Confeti */
 .confetti{
     position:fixed;
-    width:10px;
-    height:10px;
+    width:8px;
+    height:8px;
     background:gold;
     top:-10px;
     border-radius:50%;
@@ -136,9 +127,9 @@ body{
     <button onclick="openInvitation()">Abrir la invitación</button>
 </div>
 
-<!-- Música campanita real -->
-<audio id="bell" preload="auto">
-<source src="https://assets.mixkit.co/sfx/preview/mixkit-wedding-bell-ring-2011.mp3" type="audio/mpeg">
+<!-- SONIDO CAMPANA (sube tu propio mp3 si puedes) -->
+<audio id="bell">
+<source src="campana.mp3" type="audio/mpeg">
 </audio>
 
 <!-- Contenido -->
@@ -158,12 +149,11 @@ function openInvitation(){
 
     document.getElementById("welcome").style.display="none";
 
-    // Sonido campanita
+    // Sonido (debe existir campana.mp3 en tu carpeta)
     const bell=document.getElementById("bell");
-    bell.volume=1;
-    bell.play();
+    bell.play().catch(()=>{});
 
-    // Vibración tipo latido 20 segundos
+    // Vibración 20 segundos
     if(navigator.vibrate){
         let pattern=[];
         for(let i=0;i<20;i++){
@@ -172,8 +162,8 @@ function openInvitation(){
         navigator.vibrate(pattern);
     }
 
-    // Confeti dorado
-    for(let i=0;i<60;i++){
+    // Confeti
+    for(let i=0;i<50;i++){
         let confetti=document.createElement("div");
         confetti.classList.add("confetti");
         confetti.style.left=Math.random()*100+"vw";
@@ -185,7 +175,7 @@ function openInvitation(){
     }
 }
 
-/* Contador correcto */
+/* Contador */
 const weddingDate=new Date("April 24, 2026 09:30:00").getTime();
 
 const countdownFunction=setInterval(function(){
