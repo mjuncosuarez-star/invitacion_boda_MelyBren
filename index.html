@@ -146,28 +146,41 @@ body {
 
 </div>
 
-<!-- Música principal -->
 <audio id="musica" loop>
     <source src="boda_civil_miguel_y_brenda-web-resources/audio/WhatsApp_Audio_2026-02-05_at_1.44.05_PM.mpeg" type="audio/mpeg" />
 </audio>
 
-<!-- Campanita elegante -->
-<audio id="bellSound">
-    <source src="https://assets.mixkit.co/sfx/preview/mixkit-bell-notification-933.mp3" type="audio/mpeg">
-</audio>
-
-<!-- Librería Confeti -->
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <script>
 
+/* 🔔 CAMPANITA REAL GENERADA */
+function playBell() {
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+    const oscillator = audioCtx.createOscillator();
+    const gainNode = audioCtx.createGain();
+
+    oscillator.type = "sine";
+    oscillator.frequency.setValueAtTime(1200, audioCtx.currentTime);
+    oscillator.frequency.exponentialRampToValueAtTime(600, audioCtx.currentTime + 1);
+
+    gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 1);
+
+    oscillator.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+
+    oscillator.start();
+    oscillator.stop(audioCtx.currentTime + 1);
+}
+
 function enterInvitation() {
 
     var audio = document.getElementById("musica");
-    var bell = document.getElementById("bellSound");
-
     audio.play();
-    bell.play();
+
+    playBell(); // 🔔 ahora sí garantizado
 
     /* 🎉 CONFETI DORADO */
     var duration = 3 * 1000;
