@@ -79,7 +79,7 @@ body {
     display: block;
 }
 
-/* ================= MENSAJE ROMÁNTICO ================= */
+/* ================= MENSAJE ================= */
 
 .romantic-section {
     margin: 70px 25px 20px;
@@ -167,7 +167,6 @@ body {
     <img class="fadeImage"
          src="boda_civil_miguel_y_brenda-web-resources/image/1.png" />
 
-    <!-- MENSAJE ROMÁNTICO -->
     <div class="romantic-section">
         <div class="romantic-text" id="typeText"></div>
         <div class="gold-line"></div>
@@ -199,7 +198,6 @@ body {
 
 <script>
 
-/* MENSAJE QUE SE ESCRIBE */
 const message = "Con la bendición de Dios y el amor que nos une, hemos decidido caminar juntos para siempre…";
 let index = 0;
 
@@ -214,25 +212,47 @@ function typeWriter() {
 function enterInvitation() {
 
     document.getElementById("musica").play();
+    typeWriter();
 
-    typeWriter(); // inicia escritura romántica
+    /* 💥 EXPLOSIÓN CENTRAL */
+    confetti({
+        particleCount: 250,
+        spread: 140,
+        startVelocity: 55,
+        gravity: 1,
+        ticks: 300,
+        origin: { x: 0.5, y: 0.5 },
+        colors: ['#D4AF37','#E6C200','#C5A100','#F5DEB3'],
+        scalar: 1.3
+    });
 
-    var duration = 3000;
-    var end = Date.now() + duration;
+    /* 🎇 FUEGOS ARTIFICIALES RADIALES */
+    setTimeout(() => {
+        const duration = 1500;
+        const end = Date.now() + duration;
 
-    (function frame() {
-        confetti({
-            particleCount: 5,
-            spread: 80,
-            startVelocity: 25,
-            gravity: 0.7,
-            scalar: 1.1,
-            origin: { x: Math.random(), y: 0 },
-            colors: ['#D4AF37', '#C5A100', '#E6C200', '#F5DEB3']
-        });
+        (function frame() {
+            confetti({
+                particleCount: 8,
+                angle: 60,
+                spread: 55,
+                origin: { x: 0 },
+                colors: ['#D4AF37','#E6C200']
+            });
 
-        if (Date.now() < end) requestAnimationFrame(frame);
-    }());
+            confetti({
+                particleCount: 8,
+                angle: 120,
+                spread: 55,
+                origin: { x: 1 },
+                colors: ['#D4AF37','#E6C200']
+            });
+
+            if (Date.now() < end) {
+                requestAnimationFrame(frame);
+            }
+        }());
+    }, 400);
 
     if ("vibrate" in navigator) {
         navigator.vibrate([200,100,200]);
@@ -275,4 +295,3 @@ setInterval(function() {
 
 </body>
 </html>
-
