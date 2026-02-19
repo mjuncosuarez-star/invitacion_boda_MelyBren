@@ -5,13 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Miguel & Brenda</title>
 
-<link href="boda_civil_miguel_y_brenda-web-resources/css/idGeneratedStyles.css" rel="stylesheet" type="text/css" />
-
 <style>
 
 body {
     margin: 0;
-    font-family: 'Georgia', serif;
+    font-family: Georgia, serif;
     background: #f5f1ed;
     color: #6d4c41;
 }
@@ -24,28 +22,32 @@ body {
     height: 100vh;
     background: #f5f1ed;
 
-    /* CENTRADO PERFECTO */
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    flex-direction: column;
 
-    padding: 20px;
     z-index: 3000;
     transition: opacity 1s ease;
 }
 
-/* TÍTULO AJUSTADO */
-#welcomeScreen h1 {
-    font-size: 38px;   /* tamaño equilibrado */
-    margin-bottom: 28px;
-    letter-spacing: 1px;
+/* CONTENEDOR CENTRAL */
+.centerBox {
     width: 100%;
-    max-width: 340px;
+    max-width: 360px;
+    text-align: center;
+    margin: 0 auto;
 }
 
-/* BOTÓN AJUSTADO */
+/* TÍTULO PERFECTAMENTE CENTRADO */
+.centerBox h1 {
+    font-size: 38px;
+    margin: 0 0 30px 0;
+    letter-spacing: 1px;
+    display: block;
+    text-align: center;
+}
+
+/* BOTÓN PERFECTAMENTE CENTRADO */
 #enterBtn {
     padding: 15px 34px;
     border: none;
@@ -56,8 +58,8 @@ body {
     cursor: pointer;
     box-shadow: 0 10px 30px rgba(0,0,0,0.25);
     transition: all 0.3s ease;
-    width: 80%;
-    max-width: 280px;
+    display: block;
+    margin: 0 auto;
 }
 
 #enterBtn:hover {
@@ -122,8 +124,10 @@ body {
 <body>
 
 <div id="welcomeScreen">
-    <h1>Miguel & Brenda</h1>
-    <button id="enterBtn" onclick="enterInvitation()">💌 Abrir la invitación</button>
+    <div class="centerBox">
+        <h1>Miguel & Brenda</h1>
+        <button id="enterBtn" onclick="enterInvitation()">💌 Abrir la invitación</button>
+    </div>
 </div>
 
 <div id="mainContent">
@@ -212,4 +216,3 @@ setInterval(function() {
 
 </body>
 </html>
-
