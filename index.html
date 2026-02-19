@@ -204,54 +204,37 @@ function enterInvitation() {
     document.getElementById("musica").play();
     typeWriter();
 
-    const btn = document.getElementById("enterBtn");
-    const rect = btn.getBoundingClientRect();
-    const x = (rect.left + rect.width/2) / window.innerWidth;
-    const y = (rect.top + rect.height/2) / window.innerHeight;
+    /* Vibración tipo latido 20 segundos */
+    if ("vibrate" in navigator) {
+        let pattern = [];
+        for (let i = 0; i < 40; i++) {
+            pattern.push(120);
+            pattern.push(180);
+        }
+        navigator.vibrate(pattern);
+    }
 
-    /* 💥 Explosión principal moderada */
+    /* Confeti dorado elegante moderado */
     confetti({
-        particleCount: 120,
-        spread: 110,
-        startVelocity: 45,
+        particleCount: 80,
+        spread: 100,
+        startVelocity: 40,
         gravity: 1,
-        ticks: 220,
-        origin: { x: x, y: y },
-        colors: ['#D4AF37','#E6C200','#C5A100','#F5DEB3'],
-        scalar: 1.1
+        ticks: 200,
+        colors: ['#D4AF37','#E6C200','#C5A100','#F5DEB3']
     });
 
-    /* ✨ Fuegos laterales suaves */
-    setTimeout(() => {
-        confetti({
-            particleCount: 40,
-            angle: 60,
-            spread: 60,
-            origin: { x: 0 },
-            colors: ['#D4AF37','#E6C200']
-        });
-
-        confetti({
-            particleCount: 40,
-            angle: 120,
-            spread: 60,
-            origin: { x: 1 },
-            colors: ['#D4AF37','#E6C200']
-        });
-    }, 300);
-
-    /* 🌟 Polvo dorado cayendo suave */
     setTimeout(() => {
         const duration = 1500;
         const end = Date.now() + duration;
 
         (function frame() {
             confetti({
-                particleCount: 3,
-                spread: 50,
+                particleCount: 2,
+                spread: 60,
                 startVelocity: 10,
                 gravity: 0.4,
-                scalar: 0.7,
+                scalar: 0.8,
                 origin: { x: Math.random(), y: 0 },
                 colors: ['#D4AF37','#F5DEB3']
             });
@@ -260,11 +243,7 @@ function enterInvitation() {
                 requestAnimationFrame(frame);
             }
         }());
-    }, 500);
-
-    if ("vibrate" in navigator) {
-        navigator.vibrate([200,100,200]);
-    }
+    }, 400);
 
     document.getElementById("welcomeScreen").style.opacity = "0";
 
@@ -274,7 +253,7 @@ function enterInvitation() {
     }, 1000);
 }
 
-/* CONTADOR */
+/* CONTADOR EXACTO PERÚ */
 var countDownDate = new Date("2026-04-24T09:30:00-05:00").getTime();
 
 setInterval(function() {
