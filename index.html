@@ -14,7 +14,10 @@ body {
     font-family: Georgia, serif;
     background: #f5f1ed;
     color: #6d4c41;
+    overflow-x: hidden;
 }
+
+/* ===== BIENVENIDA PREMIUM ===== */
 
 #welcomeScreen {
     position: fixed;
@@ -24,6 +27,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     z-index: 3000;
     transition: opacity 1s ease;
 }
@@ -32,12 +36,33 @@ body {
     width: 100%;
     max-width: 360px;
     text-align: center;
+    position: relative;
 }
 
 .centerBox h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 42px;
-    margin-bottom: 35px;
+    font-size: 44px;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 16px;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+    color: #a1887f;
+}
+
+.gold-line-welcome {
+    width: 90px;
+    height: 2px;
+    margin: 0 auto 30px;
+    background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from { opacity: 0.4; }
+    to { opacity: 1; }
 }
 
 #enterBtn {
@@ -50,14 +75,49 @@ body {
     color: #6d4c41;
     cursor: pointer;
     transition: all 0.4s ease;
+    animation: pulse 3s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(180,138,120,0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(180,138,120,0); }
+    100% { box-shadow: 0 0 0 0 rgba(180,138,120,0); }
 }
 
 #enterBtn:hover {
     background: linear-gradient(45deg, #b48a78, #a07160);
     color: white;
     transform: translateY(-4px);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.25);
 }
+
+.bottom-date {
+    position: absolute;
+    bottom: -70px;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    letter-spacing: 3px;
+    color: #b48a78;
+}
+
+/* Partículas suaves */
+.particle {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    background: #D4AF37;
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+    from { transform: translateY(100vh); opacity:0; }
+    20% { opacity:0.6; }
+    to { transform: translateY(-10vh); opacity:0; }
+}
+
+/* ===== CONTENIDO ===== */
 
 #mainContent {
     display: none;
@@ -87,19 +147,6 @@ body {
     min-height: 80px;
 }
 
-.gold-line {
-    width: 80px;
-    height: 2px;
-    margin: 25px auto 0;
-    background: linear-gradient(90deg, transparent, #D4AF37, transparent);
-    animation: glow 2s infinite alternate;
-}
-
-@keyframes glow {
-    from { opacity: 0.4; }
-    to { opacity: 1; }
-}
-
 .date-section {
     margin: 60px 20px 20px;
     font-size: 26px;
@@ -123,8 +170,6 @@ body {
     border-radius: 50px;
     text-decoration: none;
     font-size: 17px;
-    font-weight: 500;
-    letter-spacing: 1px;
     color: #6d4c41;
     background: white;
     border: 2px solid #b48a78;
@@ -135,7 +180,6 @@ body {
     background: linear-gradient(45deg, #b48a78, #a07160);
     color: white;
     transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.25);
 }
 
 </style>
@@ -146,111 +190,117 @@ body {
 <div id="welcomeScreen">
     <div class="centerBox">
         <h1>Miguel & Brenda</h1>
-        <button id="enterBtn" onclick="enterInvitation()">
-            Abrir la invitación
-        </button>
+        <div class="subtitle">Una historia escrita por el destino</div>
+        <div class="gold-line-welcome"></div>
+        <button id="enterBtn" onclick="enterInvitation()">Abrir la invitación</button>
+        <div class="bottom-date">24 • 04 • 2026</div>
     </div>
 </div>
 
 <div id="mainContent">
 
-    <img class="fadeImage"
-         src="boda_civil_miguel_y_brenda-web-resources/image/1.png" />
+<img class="fadeImage"
+src="boda_civil_miguel_y_brenda-web-resources/image/1.png" />
 
-    <div class="romantic-section">
-        <div class="romantic-text" id="typeText"></div>
-        <div class="gold-line"></div>
-    </div>
+<div class="romantic-section">
+<div class="romantic-text" id="typeText"></div>
+</div>
 
-    <div class="date-section">
-        Viernes 24 • Abril • 2026 — 9:30 AM
-    </div>
+<div class="date-section">
+Viernes 24 • Abril • 2026 — 9:30 AM
+</div>
 
-    <div id="countdown"></div>
+<div id="countdown"></div>
 
-    <div class="buttons">
-        <a class="btn" href="https://goo.gl/maps/bMzxzeRwFK9SjVdSA" target="_blank">
-            📍 Ver ubicación
-        </a>
+<div class="buttons">
+<a class="btn" href="https://goo.gl/maps/bMzxzeRwFK9SjVdSA" target="_blank">
+📍 Ver ubicación
+</a>
 
-        <a class="btn" href="https://wa.me/51931083634" target="_blank">
-            💬 Confirmar asistencia
-        </a>
-    </div>
+<a class="btn" href="https://wa.me/51931083634" target="_blank">
+💬 Confirmar asistencia
+</a>
+</div>
 
 </div>
 
 <audio id="musica" loop playsinline>
-    <source src="boda_civil_miguel_y_brenda-web-resources/audio/WhatsApp_Audio_2026-02-05_at_1.44.05_PM.mpeg" type="audio/mpeg" />
+<source src="boda_civil_miguel_y_brenda-web-resources/audio/WhatsApp_Audio_2026-02-05_at_1.44.05_PM.mpeg" type="audio/mpeg" />
 </audio>
 
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <script>
 
-const message = "Con la bendición de Dios y el amor que nos une, hemos decidido caminar juntos para siempre…";
-let index = 0;
-
-function typeWriter() {
-    if (index < message.length) {
-        document.getElementById("typeText").innerHTML += message.charAt(index);
-        index++;
-        setTimeout(typeWriter, 40);
-    }
+/* Partículas suaves */
+for(let i=0;i<20;i++){
+let p=document.createElement("div");
+p.classList.add("particle");
+p.style.left=Math.random()*100+"%";
+p.style.animationDuration=(8+Math.random()*5)+"s";
+document.body.appendChild(p);
 }
 
-function enterInvitation() {
+const message="Con la bendición de Dios y el amor que nos une, hemos decidido caminar juntos para siempre…";
+let index=0;
 
-    document.getElementById("musica").play();
-    typeWriter();
+function typeWriter(){
+if(index<message.length){
+document.getElementById("typeText").innerHTML+=message.charAt(index);
+index++;
+setTimeout(typeWriter,40);
+}
+}
 
-    /* Vibración corta y elegante */
-    if ("vibrate" in navigator) {
-        navigator.vibrate(120);
-    }
+function enterInvitation(){
 
-    /* Confeti dorado elegante moderado */
-    confetti({
-        particleCount: 80,
-        spread: 100,
-        startVelocity: 40,
-        gravity: 1,
-        ticks: 200,
-        colors: ['#D4AF37','#E6C200','#C5A100','#F5DEB3']
-    });
+document.getElementById("musica").play();
+typeWriter();
 
-    document.getElementById("welcomeScreen").style.opacity = "0";
+/* Vibración suave una sola vez */
+if("vibrate" in navigator){
+navigator.vibrate(100);
+}
 
-    setTimeout(function() {
-        document.getElementById("welcomeScreen").style.display = "none";
-        document.getElementById("mainContent").style.display = "block";
-    }, 1000);
+/* Confeti dorado elegante */
+confetti({
+particleCount:80,
+spread:100,
+startVelocity:40,
+gravity:1,
+ticks:200,
+colors:['#D4AF37','#E6C200','#C5A100','#F5DEB3']
+});
+
+document.getElementById("welcomeScreen").style.opacity="0";
+
+setTimeout(()=>{
+document.getElementById("welcomeScreen").style.display="none";
+document.getElementById("mainContent").style.display="block";
+},1000);
 }
 
 /* CONTADOR */
-var countDownDate = new Date("2026-04-24T09:30:00-05:00").getTime();
+var countDownDate=new Date("2026-04-24T09:30:00-05:00").getTime();
 
-setInterval(function() {
+setInterval(function(){
+var now=new Date().getTime();
+var distance=countDownDate-now;
 
-    var now = new Date().getTime();
-    var distance = countDownDate - now;
+if(distance<0){
+document.getElementById("countdown").innerHTML="💍 ¡Es hoy nuestro gran día!";
+return;
+}
 
-    if (distance < 0) {
-        document.getElementById("countdown").innerHTML =
-            "💍 ¡Es hoy nuestro gran día!";
-        return;
-    }
+var days=Math.floor(distance/(1000*60*60*24));
+var hours=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+var minutes=Math.floor((distance%(1000*60*60))/(1000*60));
+var seconds=Math.floor((distance%(1000*60))/1000);
 
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+document.getElementById("countdown").innerHTML=
+days+" días • "+hours+"h • "+minutes+"m • "+seconds+"s";
 
-    document.getElementById("countdown").innerHTML =
-        days + " días • " + hours + "h • "
-        + minutes + "m • " + seconds + "s";
-
-}, 1000);
+},1000);
 
 </script>
 
