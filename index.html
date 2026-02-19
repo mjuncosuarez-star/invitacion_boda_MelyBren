@@ -1,164 +1,275 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Miguel & Brenda</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
-body{
-    margin:0;
-    padding:0;
-    text-align:center;
-    font-family:'Playfair Display',serif;
-    background:#fffaf5;
+
+body {
+    margin: 0;
+    font-family: Georgia, serif;
+    background: #f5f1ed;
+    color: #6d4c41;
 }
 
-/* BIENVENIDA */
+/* ================= PANTALLA BIENVENIDA ================= */
 
-#welcome{
-    height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    background:linear-gradient(to bottom,#fdf6ec,#f8ede3);
+#welcomeScreen {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #f5f1ed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3000;
+    transition: opacity 1s ease;
 }
 
-.names{
-    font-family:'Great Vibes',cursive;
-    font-size:50px;
-    color:#b08d57;
-    margin-bottom:25px;
+.centerBox {
+    width: 100%;
+    max-width: 360px;
+    text-align: center;
 }
 
-.open-btn{
-    padding:15px 40px;
-    font-size:18px;
-    border:none;
-    border-radius:40px;
-    background:linear-gradient(45deg,#d4af37,#b08d57);
-    color:white;
-    cursor:pointer;
+.centerBox h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    margin-bottom: 35px;
 }
 
-/* CONTENIDO */
-
-#mainContent{
-    display:none;
+#enterBtn {
+    padding: 16px 42px;
+    border-radius: 50px;
+    border: 2px solid #b48a78;
+    background: transparent;
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: #6d4c41;
+    cursor: pointer;
+    transition: all 0.4s ease;
 }
 
-.main-image{
-    width:100%;
-    max-height:500px;
-    object-fit:cover;
+#enterBtn:hover {
+    background: linear-gradient(45deg, #b48a78, #a07160);
+    color: white;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.25);
 }
 
-.date-section{
-    margin-top:40px;
+/* ================= CONTENIDO ================= */
+
+#mainContent {
+    display: none;
+    text-align: center;
+    animation: fadeIn 2s ease forwards;
 }
 
-.countdown{
-    display:flex;
-    justify-content:center;
-    gap:15px;
-    margin-top:25px;
-    flex-wrap:wrap;
+@keyframes fadeIn {
+    from {opacity:0;}
+    to {opacity:1;}
 }
 
-.count-box{
-    background:white;
-    padding:15px;
-    border-radius:12px;
-    min-width:70px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+.fadeImage {
+    width: 100%;
+    display: block;
 }
 
-.count-box span{
-    display:block;
-    font-size:22px;
-    font-weight:bold;
-    color:#b08d57;
+/* ================= MENSAJE ROMÁNTICO ================= */
+
+.romantic-section {
+    margin: 70px 25px 20px;
 }
+
+.romantic-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    line-height: 1.7;
+    color: #8d6e63;
+    min-height: 80px;
+}
+
+.gold-line {
+    width: 80px;
+    height: 2px;
+    margin: 25px auto 0;
+    background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from { opacity: 0.4; }
+    to { opacity: 1; }
+}
+
+/* ================= FECHA ================= */
+
+.date-section {
+    margin: 60px 20px 20px;
+    font-size: 26px;
+    letter-spacing: 2px;
+}
+
+#countdown {
+    font-size: 22px;
+    margin: 20px 0 50px;
+    font-weight: bold;
+}
+
+/* ================= BOTONES ================= */
+
+.buttons {
+    margin-bottom: 90px;
+}
+
+.btn {
+    display: inline-block;
+    margin: 18px;
+    padding: 16px 40px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: #6d4c41;
+    background: white;
+    border: 2px solid #b48a78;
+    transition: all 0.4s ease;
+}
+
+.btn:hover {
+    background: linear-gradient(45deg, #b48a78, #a07160);
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+}
+
 </style>
 </head>
+
 <body>
 
-<div id="welcome">
-    <div class="names">Miguel & Brenda</div>
-    <button class="open-btn" onclick="openInvitation()">Abrir la Invitación</button>
+<div id="welcomeScreen">
+    <div class="centerBox">
+        <h1>Miguel & Brenda</h1>
+        <button id="enterBtn" onclick="enterInvitation()">
+            Abrir la invitación
+        </button>
+    </div>
 </div>
 
 <div id="mainContent">
 
-<img src="foto.jpg" class="main-image">
+    <img class="fadeImage"
+         src="boda_civil_miguel_y_brenda-web-resources/image/1.png" />
 
-<div class="date-section">
-    <h2>Viernes 24 de Abril 2026 – 09:30 AM</h2>
-
-    <div class="countdown">
-        <div class="count-box"><span id="days">0</span>Días</div>
-        <div class="count-box"><span id="hours">0</span>Horas</div>
-        <div class="count-box"><span id="minutes">0</span>Min</div>
-        <div class="count-box"><span id="seconds">0</span>Seg</div>
+    <!-- MENSAJE ROMÁNTICO -->
+    <div class="romantic-section">
+        <div class="romantic-text" id="typeText"></div>
+        <div class="gold-line"></div>
     </div>
-</div>
+
+    <div class="date-section">
+        Viernes 24 • Abril • 2026 — 9:30 AM
+    </div>
+
+    <div id="countdown"></div>
+
+    <div class="buttons">
+        <a class="btn" href="https://goo.gl/maps/bMzxzeRwFK9SjVdSA" target="_blank">
+            📍 Ver ubicación
+        </a>
+
+        <a class="btn" href="https://wa.me/51931083634" target="_blank">
+            💬 Confirmar asistencia
+        </a>
+    </div>
 
 </div>
 
-<!-- AUDIOS LOCALES -->
-<audio id="bellSound" src="campana.mp3" preload="auto"></audio>
-<audio id="music" src="musica.mp3" preload="auto" loop></audio>
+<audio id="musica" loop playsinline>
+    <source src="boda_civil_miguel_y_brenda-web-resources/audio/WhatsApp_Audio_2026-02-05_at_1.44.05_PM.mpeg" type="audio/mpeg" />
+</audio>
 
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <script>
 
-function openInvitation(){
+/* MENSAJE QUE SE ESCRIBE */
+const message = "Con la bendición de Dios y el amor que nos une, hemos decidido caminar juntos para siempre…";
+let index = 0;
 
-    document.getElementById("welcome").style.display="none";
-    document.getElementById("mainContent").style.display="block";
+function typeWriter() {
+    if (index < message.length) {
+        document.getElementById("typeText").innerHTML += message.charAt(index);
+        index++;
+        setTimeout(typeWriter, 40);
+    }
+}
 
-    // 🔔 Campana
-    let bell = document.getElementById("bellSound");
-    bell.currentTime = 0;
-    bell.play().catch(e => console.log("Audio bloqueado"));
+function enterInvitation() {
 
-    // 🎵 Música fondo
-    let music = document.getElementById("music");
-    music.volume = 0.4;
-    music.play().catch(e => console.log("Música bloqueada"));
+    document.getElementById("musica").play();
 
-    // 📳 Vibración
-    if(navigator.vibrate){
+    typeWriter(); // inicia escritura romántica
+
+    var duration = 3000;
+    var end = Date.now() + duration;
+
+    (function frame() {
+        confetti({
+            particleCount: 5,
+            spread: 80,
+            startVelocity: 25,
+            gravity: 0.7,
+            scalar: 1.1,
+            origin: { x: Math.random(), y: 0 },
+            colors: ['#D4AF37', '#C5A100', '#E6C200', '#F5DEB3']
+        });
+
+        if (Date.now() < end) requestAnimationFrame(frame);
+    }());
+
+    if ("vibrate" in navigator) {
         navigator.vibrate([200,100,200]);
     }
 
-    // 🎊 CONFETI EXPLOSIÓN REAL
-    confetti({
-        particleCount: 200,
-        spread: 100,
-        origin: { y: 0.6 },
-        colors: ['#d4af37','#b08d57','#f5deb3']
-    });
+    document.getElementById("welcomeScreen").style.opacity = "0";
+
+    setTimeout(function() {
+        document.getElementById("welcomeScreen").style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
+    }, 1000);
 }
 
 /* CONTADOR */
+var countDownDate = new Date("2026-04-24T09:30:00-05:00").getTime();
 
-const weddingDate = new Date("April 24, 2026 09:30:00").getTime();
+setInterval(function() {
 
-setInterval(function(){
-    const now = new Date().getTime();
-    const distance = weddingDate - now;
+    var now = new Date().getTime();
+    var distance = countDownDate - now;
 
-    document.getElementById("days").innerText = Math.floor(distance/(1000*60*60*24));
-    document.getElementById("hours").innerText = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-    document.getElementById("minutes").innerText = Math.floor((distance%(1000*60*60))/(1000*60));
-    document.getElementById("seconds").innerText = Math.floor((distance%(1000*60))/1000);
+    if (distance < 0) {
+        document.getElementById("countdown").innerHTML =
+            "💍 ¡Es hoy nuestro gran día!";
+        return;
+    }
 
-},1000);
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("countdown").innerHTML =
+        days + " días • " + hours + "h • "
+        + minutes + "m • " + seconds + "s";
+
+}, 1000);
 
 </script>
 
