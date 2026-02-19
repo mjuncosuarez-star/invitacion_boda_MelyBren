@@ -1,205 +1,250 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Miguel & Brenda</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
-
 <style>
-body{
-    margin:0;
-    font-family:'Montserrat',sans-serif;
-    text-align:center;
-    background:#fff;
-    overflow-x:hidden;
+
+body {
+    margin: 0;
+    font-family: Georgia, serif;
+    background: #f5f1ed;
+    color: #6d4c41;
 }
 
-/* Bienvenida */
-#welcome{
-    position:fixed;
-    width:100%;
-    height:100vh;
-    background:white;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    z-index:1000;
+/* ================= PANTALLA BIENVENIDA ================= */
+
+#welcomeScreen {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #f5f1ed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3000;
+    transition: opacity 1s ease;
 }
 
-#welcome h1{
-    font-family:'Playfair Display',serif;
-    font-size:36px;
-    margin:0;
+.centerBox {
+    width: 100%;
+    max-width: 360px;
+    text-align: center;
+    margin: 0 auto;
 }
 
-#welcome p{
-    font-size:18px;
-    margin:10px 0 25px;
+.centerBox h1 {
+    font-size: 38px;
+    margin: 0 0 30px 0;
+    letter-spacing: 1px;
 }
 
-#welcome button{
-    padding:12px 28px;
-    font-size:16px;
-    border:none;
-    background:gold;
-    border-radius:30px;
-    cursor:pointer;
-    transition:0.3s;
+#enterBtn {
+    padding: 15px 34px;
+    border: none;
+    border-radius: 40px;
+    background: linear-gradient(45deg, #b48a78, #a07160);
+    color: white;
+    font-size: 19px;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    transition: all 0.3s ease;
+    display: block;
+    margin: 0 auto;
 }
 
-#welcome button:hover{
-    background:#d4af37;
+#enterBtn:hover {
+    transform: translateY(-3px);
 }
 
-/* Imagen principal */
-.hero{
-    width:100%;
-    height:100vh;
-    background:url("foto.jpg") center/cover no-repeat; /* CAMBIA foto.jpg */
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
+/* ================= CONTENIDO ================= */
+
+#mainContent {
+    display: none;
+    text-align: center;
+    animation: fadeIn 2s ease forwards;
 }
 
-.names{
-    font-family:'Playfair Display',serif;
-    font-size:42px;
-    color:white;
-    text-shadow:0 3px 10px rgba(0,0,0,0.6);
+@keyframes fadeIn {
+    from {opacity:0;}
+    to {opacity:1;}
 }
 
-/* Contador */
-.countdown{
-    margin:40px 0;
-    font-size:22px;
+.fadeImage {
+    width: 100%;
+    display: block;
 }
 
-/* Botones */
-.buttons{
-    margin-bottom:50px;
+.date-section {
+    margin: 60px 20px 20px;
+    font-size: 26px;
+    letter-spacing: 2px;
 }
 
-.buttons a{
-    display:inline-block;
-    margin:10px;
-    padding:12px 25px;
-    border-radius:30px;
-    text-decoration:none;
-    color:white;
-    background:#b8860b;
-    transition:0.3s;
+#countdown {
+    font-size: 22px;
+    margin: 20px 0 50px;
+    font-weight: bold;
 }
 
-.buttons a:hover{
-    background:#a5740a;
-    transform:translateY(-3px);
+.buttons {
+    margin-bottom: 80px;
 }
 
-/* Confeti */
-.confetti{
-    position:fixed;
-    width:8px;
-    height:8px;
-    background:gold;
-    top:-10px;
-    border-radius:50%;
-    animation:fall 4s linear forwards;
+.btn {
+    display: inline-block;
+    margin: 15px;
+    padding: 14px 32px;
+    border-radius: 40px;
+    text-decoration: none;
+    color: white;
+    background: linear-gradient(45deg, #b48a78, #a07160);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    font-size: 17px;
 }
 
-@keyframes fall{
-    to{
-        transform:translateY(110vh) rotate(720deg);
-        opacity:0;
-    }
+.btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.3);
 }
+
 </style>
 </head>
+
 <body>
 
-<!-- Bienvenida -->
-<div id="welcome">
-    <h1>Miguel & Brenda</h1>
-    <p>Te invitamos a nuestra boda</p>
-    <button onclick="openInvitation()">Abrir la invitación</button>
+<div id="welcomeScreen">
+    <div class="centerBox">
+        <h1>Miguel & Brenda</h1>
+        <button id="enterBtn" onclick="enterInvitation()">💌 Abrir la invitación</button>
+    </div>
 </div>
 
-<!-- SONIDO CAMPANA (sube tu propio mp3 si puedes) -->
-<audio id="bell">
-<source src="campana.mp3" type="audio/mpeg">
+<div id="mainContent">
+
+    <img class="fadeImage"
+         src="boda_civil_miguel_y_brenda-web-resources/image/1.png" />
+
+    <div class="date-section">
+        Viernes 24 • Abril • 2026 — 9:30 AM
+    </div>
+
+    <div id="countdown"></div>
+
+    <div class="buttons">
+        <a class="btn" href="https://goo.gl/maps/bMzxzeRwFK9SjVdSA" target="_blank">
+            📍 Ver ubicación
+        </a>
+
+        <a class="btn" href="https://wa.me/51931083634" target="_blank">
+            💬 Confirmar asistencia
+        </a>
+    </div>
+
+</div>
+
+<audio id="musica" loop>
+    <source src="boda_civil_miguel_y_brenda-web-resources/audio/WhatsApp_Audio_2026-02-05_at_1.44.05_PM.mpeg" type="audio/mpeg" />
 </audio>
 
-<!-- Contenido -->
-<div class="hero">
-    <h2 class="names">Miguel & Brenda</h2>
-</div>
-
-<div class="countdown" id="countdown"></div>
-
-<div class="buttons">
-    <a href="https://goo.gl/maps/bMzxzeRwFK9SjVdSA" target="_blank">Ver Ubicación</a>
-    <a href="https://wa.me/51931083634" target="_blank">Confirmar Asistencia</a>
-</div>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <script>
-function openInvitation(){
 
-    document.getElementById("welcome").style.display="none";
+/* 🔔 CAMPANITA REAL TIPO IGLESIA */
+function playBell() {
 
-    // Sonido (debe existir campana.mp3 en tu carpeta)
-    const bell=document.getElementById("bell");
-    bell.play().catch(()=>{});
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const now = ctx.currentTime;
 
-    // Vibración 20 segundos
-    if(navigator.vibrate){
-        let pattern=[];
-        for(let i=0;i<20;i++){
-            pattern.push(200,200);
-        }
-        navigator.vibrate(pattern);
+    function createTone(freq, gainValue, duration) {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.type = "sine";
+        osc.frequency.value = freq;
+
+        gain.gain.setValueAtTime(gainValue, now);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start(now);
+        osc.stop(now + duration);
     }
 
-    // Confeti
-    for(let i=0;i<50;i++){
-        let confetti=document.createElement("div");
-        confetti.classList.add("confetti");
-        confetti.style.left=Math.random()*100+"vw";
-        confetti.style.backgroundColor=["gold","#d4af37","#fff8dc"][Math.floor(Math.random()*3)];
-        confetti.style.animationDuration=(Math.random()*3+2)+"s";
-        document.body.appendChild(confetti);
-
-        setTimeout(()=>{confetti.remove()},4000);
-    }
+    // Frecuencias armónicas tipo campana
+    createTone(880, 0.4, 2);
+    createTone(1320, 0.2, 2);
+    createTone(1760, 0.1, 2);
 }
 
-/* Contador */
-const weddingDate=new Date("April 24, 2026 09:30:00").getTime();
+function enterInvitation() {
 
-const countdownFunction=setInterval(function(){
+    document.getElementById("musica").play();
+    playBell();
 
-    const now=new Date().getTime();
-    const distance=weddingDate-now;
+    /* 🎉 CONFETI DORADO */
+    var duration = 3 * 1000;
+    var end = Date.now() + duration;
 
-    const days=Math.floor(distance/(1000*60*60*24));
-    const hours=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-    const minutes=Math.floor((distance%(1000*60*60))/(1000*60));
-    const seconds=Math.floor((distance%(1000*60))/1000);
+    (function frame() {
+        confetti({
+            particleCount: 5,
+            spread: 80,
+            startVelocity: 25,
+            gravity: 0.7,
+            scalar: 1.1,
+            origin: { x: Math.random(), y: 0 },
+            colors: ['#D4AF37', '#C5A100', '#E6C200', '#F5DEB3']
+        });
 
-    document.getElementById("countdown").innerHTML=
-    days+" días "+
-    hours+" horas "+
-    minutes+" min "+
-    seconds+" seg";
+        if (Date.now() < end) {
+            requestAnimationFrame(frame);
+        }
+    }());
 
-    if(distance<0){
-        clearInterval(countdownFunction);
-        document.getElementById("countdown").innerHTML="¡Hoy es el gran día!";
+    if ("vibrate" in navigator) {
+        navigator.vibrate([200,100,200]);
     }
 
-},1000);
+    document.getElementById("welcomeScreen").style.opacity = "0";
+
+    setTimeout(function() {
+        document.getElementById("welcomeScreen").style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
+    }, 1000);
+}
+
+/* CONTADOR EXACTO PERÚ */
+var countDownDate = new Date("2026-04-24T09:30:00-05:00").getTime();
+
+setInterval(function() {
+
+    var now = new Date().getTime();
+    var distance = countDownDate - now;
+
+    if (distance < 0) {
+        document.getElementById("countdown").innerHTML =
+            "💍 ¡Es hoy nuestro gran día!";
+        return;
+    }
+
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("countdown").innerHTML =
+        days + " días • " + hours + "h • "
+        + minutes + "m • " + seconds + "s";
+
+}, 1000);
+
 </script>
 
 </body>
