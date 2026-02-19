@@ -14,10 +14,9 @@ body{
     text-align:center;
     font-family:'Playfair Display',serif;
     background:#fffaf5;
-    overflow-x:hidden;
 }
 
-/* PANTALLA BIENVENIDA */
+/* BIENVENIDA */
 
 #welcome{
     height:100vh;
@@ -36,28 +35,19 @@ body{
 }
 
 .open-btn{
-    padding:14px 38px;
+    padding:15px 40px;
     font-size:18px;
-    font-family:'Playfair Display',serif;
-    background:linear-gradient(45deg,#d4af37,#b08d57);
-    color:white;
     border:none;
     border-radius:40px;
+    background:linear-gradient(45deg,#d4af37,#b08d57);
+    color:white;
     cursor:pointer;
-    transition:all 0.4s ease;
-    box-shadow:0 6px 15px rgba(0,0,0,0.2);
-}
-
-.open-btn:hover{
-    transform:translateY(-3px);
-    box-shadow:0 8px 20px rgba(0,0,0,0.3);
 }
 
 /* CONTENIDO */
 
 #mainContent{
     display:none;
-    padding-bottom:60px;
 }
 
 .main-image{
@@ -66,56 +56,8 @@ body{
     object-fit:cover;
 }
 
-/* MENSAJE ROMÁNTICO */
-
-.romantic-section{
-    margin:60px 25px 40px;
-}
-
-.romantic-text{
-    font-size:22px;
-    line-height:1.6;
-    color:#8d6e63;
-    opacity:0;
-    transform:translateY(30px);
-    animation:fadeUp 2s ease forwards 0.5s;
-}
-
-@keyframes fadeUp{
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-.gold-line{
-    width:80px;
-    height:2px;
-    background:linear-gradient(to right,transparent,#d4af37,transparent);
-    margin:20px auto;
-    opacity:0;
-    animation:fadeLine 2s ease forwards 1.5s;
-}
-
-@keyframes fadeLine{
-    to{opacity:1;}
-}
-
-/* FECHA */
-
 .date-section{
     margin-top:40px;
-}
-
-.date-title{
-    font-size:26px;
-    font-weight:600;
-    color:#b08d57;
-}
-
-.date-info{
-    margin-top:10px;
-    font-size:18px;
 }
 
 .countdown{
@@ -130,8 +72,8 @@ body{
     background:white;
     padding:15px;
     border-radius:12px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.1);
     min-width:70px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
 }
 
 .count-box span{
@@ -140,52 +82,21 @@ body{
     font-weight:bold;
     color:#b08d57;
 }
-
-/* BOTONES */
-
-.buttons{
-    margin-top:40px;
-}
-
-.buttons a{
-    display:inline-block;
-    margin:10px;
-    padding:12px 30px;
-    border-radius:30px;
-    text-decoration:none;
-    font-size:16px;
-    background:linear-gradient(45deg,#d4af37,#b08d57);
-    color:white;
-    transition:0.3s;
-}
-
-.buttons a:hover{
-    transform:translateY(-3px);
-    box-shadow:0 6px 15px rgba(0,0,0,0.2);
-}
 </style>
 </head>
 <body>
 
-<!-- BIENVENIDA -->
 <div id="welcome">
     <div class="names">Miguel & Brenda</div>
     <button class="open-btn" onclick="openInvitation()">Abrir la Invitación</button>
 </div>
 
-<!-- CONTENIDO PRINCIPAL -->
 <div id="mainContent">
 
 <img src="foto.jpg" class="main-image">
 
-<div class="romantic-section">
-    <div class="romantic-text" id="romanticText"></div>
-    <div class="gold-line"></div>
-</div>
-
 <div class="date-section">
-    <div class="date-title">Nuestra Boda</div>
-    <div class="date-info">Viernes 24 de Abril 2026 – 09:30 AM</div>
+    <h2>Viernes 24 de Abril 2026 – 09:30 AM</h2>
 
     <div class="countdown">
         <div class="count-box"><span id="days">0</span>Días</div>
@@ -195,80 +106,62 @@ body{
     </div>
 </div>
 
-<div class="buttons">
-    <a href="#">Ver Ubicación</a>
-    <a href="#">Confirmar Asistencia</a>
 </div>
 
-</div>
+<!-- AUDIOS LOCALES -->
+<audio id="bellSound" src="campana.mp3" preload="auto"></audio>
+<audio id="music" src="musica.mp3" preload="auto" loop></audio>
 
-<!-- SONIDOS -->
-<audio id="bellSound" preload="auto">
-    <source src="campana.mp3" type="audio/mpeg">
-</audio>
-
-<audio id="music" loop preload="auto">
-    <source src="musica.mp3" type="audio/mpeg">
-</audio>
-
-<!-- CONFETTI -->
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <script>
 
-/* ABRIR INVITACIÓN */
-
 function openInvitation(){
+
     document.getElementById("welcome").style.display="none";
     document.getElementById("mainContent").style.display="block";
 
-    document.getElementById("bellSound").play();
+    // 🔔 Campana
+    let bell = document.getElementById("bellSound");
+    bell.currentTime = 0;
+    bell.play().catch(e => console.log("Audio bloqueado"));
 
-    const music = document.getElementById("music");
+    // 🎵 Música fondo
+    let music = document.getElementById("music");
     music.volume = 0.4;
-    music.play();
+    music.play().catch(e => console.log("Música bloqueada"));
 
-    confetti({
-        particleCount:150,
-        spread:70,
-        origin:{y:0.6},
-        colors:['#d4af37','#b08d57','#f5deb3']
-    });
-
-    startTypeWriter();
-}
-
-/* MENSAJE TYPEWRITER */
-
-function startTypeWriter(){
-    const text="Con la bendición de Dios y el amor que nos une, hemos decidido caminar juntos para siempre…";
-    const element=document.getElementById("romanticText");
-    let i=0;
-    function typing(){
-        if(i<text.length){
-            element.innerHTML+=text.charAt(i);
-            i++;
-            setTimeout(typing,50);
-        }
+    // 📳 Vibración
+    if(navigator.vibrate){
+        navigator.vibrate([200,100,200]);
     }
-    typing();
+
+    // 🎊 CONFETI EXPLOSIÓN REAL
+    confetti({
+        particleCount: 200,
+        spread: 100,
+        origin: { y: 0.6 },
+        colors: ['#d4af37','#b08d57','#f5deb3']
+    });
 }
 
-/* CONTADOR CORRECTO */
+/* CONTADOR */
 
-const weddingDate=new Date("April 24, 2026 09:30:00").getTime();
+const weddingDate = new Date("April 24, 2026 09:30:00").getTime();
 
 setInterval(function(){
-    const now=new Date().getTime();
-    const distance=weddingDate-now;
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
 
-    document.getElementById("days").innerText=Math.floor(distance/(1000*60*60*24));
-    document.getElementById("hours").innerText=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-    document.getElementById("minutes").innerText=Math.floor((distance%(1000*60*60))/(1000*60));
-    document.getElementById("seconds").innerText=Math.floor((distance%(1000*60))/1000);
+    document.getElementById("days").innerText = Math.floor(distance/(1000*60*60*24));
+    document.getElementById("hours").innerText = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+    document.getElementById("minutes").innerText = Math.floor((distance%(1000*60*60))/(1000*60));
+    document.getElementById("seconds").innerText = Math.floor((distance%(1000*60))/1000);
+
 },1000);
 
 </script>
 
 </body>
 </html>
+
