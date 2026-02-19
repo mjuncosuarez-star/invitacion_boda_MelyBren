@@ -204,14 +204,9 @@ function enterInvitation() {
     document.getElementById("musica").play();
     typeWriter();
 
-    /* Vibración tipo latido 5 segundos */
+    /* Vibración corta y elegante */
     if ("vibrate" in navigator) {
-        let pattern = [];
-        for (let i = 0; i < 40; i++) {
-            pattern.push(120);
-            pattern.push(180);
-        }
-        navigator.vibrate(pattern);
+        navigator.vibrate(120);
     }
 
     /* Confeti dorado elegante moderado */
@@ -224,27 +219,6 @@ function enterInvitation() {
         colors: ['#D4AF37','#E6C200','#C5A100','#F5DEB3']
     });
 
-    setTimeout(() => {
-        const duration = 1500;
-        const end = Date.now() + duration;
-
-        (function frame() {
-            confetti({
-                particleCount: 2,
-                spread: 60,
-                startVelocity: 10,
-                gravity: 0.4,
-                scalar: 0.8,
-                origin: { x: Math.random(), y: 0 },
-                colors: ['#D4AF37','#F5DEB3']
-            });
-
-            if (Date.now() < end) {
-                requestAnimationFrame(frame);
-            }
-        }());
-    }, 400);
-
     document.getElementById("welcomeScreen").style.opacity = "0";
 
     setTimeout(function() {
@@ -253,7 +227,7 @@ function enterInvitation() {
     }, 1000);
 }
 
-/* CONTADOR EXACTO PERÚ */
+/* CONTADOR */
 var countDownDate = new Date("2026-04-24T09:30:00-05:00").getTime();
 
 setInterval(function() {
